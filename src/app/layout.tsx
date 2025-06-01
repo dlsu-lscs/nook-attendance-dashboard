@@ -17,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/lscs.png" />
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased bg-black text-white`}>
+        {children}
+      </body>
     </html>
   )
 }
