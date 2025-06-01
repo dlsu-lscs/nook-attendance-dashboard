@@ -1,7 +1,7 @@
 export const Navbar = () => {
   return (
     <>
-      <div className="flex justify-between p-4">
+      <div className="flex justify-between p-2">
         <div className="flex items-center">
           <img src="/lscs.png" alt="lscsLogo" className="w-28 h-28" />
           <div className="flex flex-col justify-center text-3xl font-bold">
