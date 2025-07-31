@@ -44,7 +44,7 @@ export default async function Dashboard() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {nookOfficers.map((officer, index) => {
+              {/* {nookOfficers.map((officer, index) => {
                 return (
                   <TableRow key={index} className="gap-4">
                     <TableCell className="px-4 py-2">
@@ -58,7 +58,7 @@ export default async function Dashboard() {
                     </TableCell>
                   </TableRow>
                 )
-              })}
+              })} */}
             </TableBody>
           </Table>
         </div>
