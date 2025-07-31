@@ -44,21 +44,23 @@ export default async function Dashboard() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {nookOfficers.map((officer, index) => {
-                return (
-                  <TableRow key={index} className="gap-4">
-                    <TableCell className="px-4 py-2">
-                      {officer.full_name}
-                    </TableCell>
-                    <TableCell className="px-4 py-2">
-                      {officer.committee_name}
-                    </TableCell>
-                    <TableCell className="text-right px-4 py-2">
-                      {officer.hours_rendered}
-                    </TableCell>
-                  </TableRow>
-                )
-              })}
+              {nookOfficers == null
+                ? null
+                : nookOfficers.map((officer, index) => {
+                    return (
+                      <TableRow key={index} className="gap-4">
+                        <TableCell className="px-4 py-2">
+                          {officer.full_name}
+                        </TableCell>
+                        <TableCell className="px-4 py-2">
+                          {officer.committee_name}
+                        </TableCell>
+                        <TableCell className="text-right px-4 py-2">
+                          {officer.hours_rendered}
+                        </TableCell>
+                      </TableRow>
+                    )
+                  })}
             </TableBody>
           </Table>
         </div>
