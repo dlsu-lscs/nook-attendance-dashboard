@@ -1,6 +1,6 @@
 export const getOfficerAttendance = async () => {
   try {
-    const response = await fetch(`${process.env.BASE_URL}/officer/attendance`)
+    const response = await fetch(`${process.env.BASE_URL}/attendance/officer`)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
