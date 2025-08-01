@@ -19,13 +19,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# ✅ Copy the environment file into the image
-COPY .env .env
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
 
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
-
-# ✅ Build the Next.js app (uses .env automatically)
 RUN npm run build
 
 # Final image for production
@@ -33,11 +29,8 @@ FROM node:18-alpine AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV PORT 3000
-
-# ✅ Copy the .env for runtime (optional if needed at runtime)
-COPY .env .env
+ENV NODE_ENV=production
+ENV PORT=3000
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
@@ -46,5 +39,4 @@ COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 3000
 
-# Start the Next.js server
 CMD ["npm", "start"]
