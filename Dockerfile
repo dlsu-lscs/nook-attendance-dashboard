@@ -3,7 +3,6 @@ FROM node:18-alpine AS deps
 
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* pnpm-lock.yaml* yarn.lock* ./
 
 RUN \
@@ -20,11 +19,13 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Set environment variables (customize as needed)
+# ✅ Copy the environment file into the image
+COPY .env .env
+
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
-# Build the Next.js app
+# ✅ Build the Next.js app (uses .env automatically)
 RUN npm run build
 
 # Final image for production
@@ -35,7 +36,9 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV PORT 3000
 
-# Copy only necessary files for production
+# ✅ Copy the .env for runtime (optional if needed at runtime)
+COPY .env .env
+
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
