@@ -31,19 +31,25 @@ export default async function OfficerAttendanceTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {officer_attendance.map((officer, index) => {
-            return (
-              <TableRow key={index} className="gap-4">
-                <TableCell className="px-4 py-2">{officer.full_name}</TableCell>
-                <TableCell className="px-4 py-2">
-                  {officer.committee_name}
-                </TableCell>
-                <TableCell className="text-right px-4 py-2">
-                  {officer.hours_rendered}
-                </TableCell>
-              </TableRow>
-            );
-          })}
+          {officer_attendance.length == 0 ? (
+            <p>No data available.</p>
+          ) : (
+            officer_attendance?.map((officer, index) => {
+              return (
+                <TableRow key={index} className="gap-4">
+                  <TableCell className="px-4 py-2">
+                    {officer.full_name}
+                  </TableCell>
+                  <TableCell className="px-4 py-2">
+                    {officer.committee_name}
+                  </TableCell>
+                  <TableCell className="text-right px-4 py-2">
+                    {officer.hours_rendered}
+                  </TableCell>
+                </TableRow>
+              );
+            })
+          )}
         </TableBody>
       </Table>
     </>

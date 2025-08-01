@@ -28,16 +28,22 @@ export default async function ActiveOfficersTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {active_officers.map((officer, index) => {
-            return (
-              <TableRow key={index} className="gap-4">
-                <TableCell className="px-4 py-2">{officer.full_name}</TableCell>
-                <TableCell className="px-4 py-2">
-                  {officer.committee_name}
-                </TableCell>
-              </TableRow>
-            );
-          })}
+          {active_officers.length == 0 ? (
+            <p>No data available.</p>
+          ) : (
+            active_officers?.map((officer, index) => {
+              return (
+                <TableRow key={index} className="gap-4">
+                  <TableCell className="px-4 py-2">
+                    {officer.full_name}
+                  </TableCell>
+                  <TableCell className="px-4 py-2">
+                    {officer.committee_name}
+                  </TableCell>
+                </TableRow>
+              );
+            })
+          )}
         </TableBody>
       </Table>
     </>

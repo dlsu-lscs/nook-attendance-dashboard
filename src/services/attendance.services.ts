@@ -5,9 +5,10 @@ export const getOfficerAttendance = async () => {
       throw new Error(`Error: ${response.status}`);
     }
     const data = await response.json();
-    return data.data;
-  } catch (error: any) {
+    return data.data ?? [];
+  } catch (error: unknown) {
     console.log("Error: " + error);
+    return [];
   }
 };
 
@@ -20,9 +21,10 @@ export const getActiveOfficers = async () => {
       throw new Error(`Error: ${response.status}`);
     }
     const data = await response.json();
-    return data.data;
-  } catch (error: any) {
+    return data.data ?? [];
+  } catch (error: unknown) {
     console.log("Error: " + error);
+    return [];
   }
 };
 
@@ -35,8 +37,9 @@ export const getComitteeAttendance = async () => {
       throw new Error(`Error: ${response.status}`);
     }
     const data = await response.json();
-    return data.data;
-  } catch (error: any) {
+    return data.data ?? [];
+  } catch (error: unknown) {
     console.log("Error: " + error);
+    return [];
   }
 };
