@@ -1,6 +1,8 @@
 export const getOfficerAttendance = async () => {
   try {
-    const response = await fetch(`${process.env.BASE_URL}/attendance/officer`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/attendance/officer`
+    );
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
@@ -15,7 +17,7 @@ export const getOfficerAttendance = async () => {
 export const getActiveOfficers = async () => {
   try {
     const response = await fetch(
-      `${process.env.BASE_URL}/attendance/officer/active`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/attendance/officer/active`
     );
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
@@ -31,7 +33,7 @@ export const getActiveOfficers = async () => {
 export const getComitteeAttendance = async () => {
   try {
     const response = await fetch(
-      `${process.env.BASE_URL}/attendance/committee`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/attendance/committee`
     );
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
