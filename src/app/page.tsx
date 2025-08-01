@@ -1,21 +1,10 @@
-import { Navbar } from '@/components/layout/Navbar'
-import { getOfficerAttendance } from '@/services/attendance.services'
-import Image from 'next/image'
-
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import { officerModel } from '@/models/officers.models'
+import { Navbar } from "@/components/layout/Navbar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ActiveOfficersTable from "@/features/table_data/activeOfficers";
+import CommitteeAttendanceTable from "@/features/table_data/committeeAttendance";
+import OfficerAttendanceTable from "@/features/table_data/officerAttendance";
 
 export default async function Dashboard() {
-  const nookOfficers: officerModel[] = await getOfficerAttendance()
-  console.log(nookOfficers)
   return (
     <>
       <div>
@@ -26,45 +15,24 @@ export default async function Dashboard() {
           <div>
             <h1 className="text-4xl font-bold my-4">Nook Statistics:</h1>
           </div>
-          <Table>
-            <TableCaption className="text-white">
-              A list of officers that went inside the nook
-            </TableCaption>
-            <TableHeader>
-              <TableRow className="font-medium">
-                <TableHead className="w-[100px] text-white px-4 py-2">
-                  Name
-                </TableHead>
-                <TableHead className="text-white px-4 py-2">
-                  Committee
-                </TableHead>
-                <TableHead className="text-white text-right px-4 py-2">
-                  Total Hours Inside the Nook
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {nookOfficers == null
-                ? null
-                : nookOfficers.map((officer, index) => {
-                    return (
-                      <TableRow key={index} className="gap-4">
-                        <TableCell className="px-4 py-2">
-                          {officer.full_name}
-                        </TableCell>
-                        <TableCell className="px-4 py-2">
-                          {officer.committee_name}
-                        </TableCell>
-                        <TableCell className="text-right px-4 py-2">
-                          {officer.hours_rendered}
-                        </TableCell>
-                      </TableRow>
-                    )
-                  })}
-            </TableBody>
-          </Table>
+          <Tabs defaultValue="active">
+            <TabsList>
+              <TabsTrigger value="active">Active Officers</TabsTrigger>
+              <TabsTrigger value="officers">Officer Attendance</TabsTrigger>
+              <TabsTrigger value="committee">Committee Attendance</TabsTrigger>
+            </TabsList>
+            <TabsContent value="active">
+              <ActiveOfficersTable />
+            </TabsContent>
+            <TabsContent value="officers">
+              <OfficerAttendanceTable />
+            </TabsContent>
+            <TabsContent value="committee">
+              <CommitteeAttendanceTable />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </>
-  )
+  );
 }
